@@ -25,7 +25,7 @@ func main() {
 	}
 
 	if *path == "" {
-		log.Fatal("Path is a required parameter; --path <PATH>")
+		log.Fatal("goenum: Path is a required parameter; --path <PATH>")
 	}
 
 	generate(*path, *debug)
@@ -86,7 +86,7 @@ func generate(p string, debug bool) {
 							w.Flush()
 
 							if debug {
-								log.Println("Generated for " + typeName + " in path: " + path)
+								log.Println("goenum: " + path + ": wrote " + dir + pkgName + ".gen.go")
 							}
 						}
 					}
@@ -99,6 +99,7 @@ func generate(p string, debug bool) {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println("goenum: wrote all enum helpers")
 }
 
 type EnumModel struct {

@@ -1,6 +1,6 @@
 # Go-Enum
 
-Go-Enum is a tool to automatigically generate String() and Parse() functions in generated files located next to the enum file.
+Go-Enum is a tool to automagically generate String() and Parse() functions in generated files located next to the enum file.
 
 # Commands
 goenum --path \<PATH\> (--debug)
