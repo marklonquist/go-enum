@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"flag"
+	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -20,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	if *help && *path == "" {
-		log.Println("goenum --path <PATH> (--debug)")
+		fmt.Println("goenum --path <PATH> (--debug)")
 		return
 	}
 
@@ -81,12 +82,12 @@ func generate(p string, debug bool) {
 							w := bufio.NewWriter(newFile)
 							err = t.Execute(w, tmplModel)
 							if err != nil {
-								log.Println(err)
+								fmt.Println(err)
 							}
 							w.Flush()
 
 							if debug {
-								log.Println("goenum: " + path + ": wrote " + dir + pkgName + ".gen.go")
+								fmt.Println("goenum: " + path + ": wrote " + dir + pkgName + ".gen.go")
 							}
 						}
 					}
@@ -97,9 +98,9 @@ func generate(p string, debug bool) {
 		return err
 	})
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
-	log.Println("goenum: wrote all enum helpers")
+	fmt.Println("goenum: wrote all enum helpers")
 }
 
 type EnumModel struct {
