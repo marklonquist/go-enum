@@ -78,7 +78,7 @@ func generate(p string, debug bool) {
 								}
 							}
 
-							newFile, _ := os.Create(dir + pkgName + ".gen.go")
+							newFile, _ := os.Create(dir + strings.ToLower(typeName) + ".gen.go")
 							w := bufio.NewWriter(newFile)
 							err = t.Execute(w, tmplModel)
 							if err != nil {
