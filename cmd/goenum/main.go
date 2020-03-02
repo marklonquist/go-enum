@@ -78,6 +78,10 @@ func generate(p string, debug bool) {
 								}
 							}
 
+							if len(tmplModel.Enums) == 0 {
+								continue
+							}
+
 							newFile, _ := os.Create(dir + strings.ToLower(typeName) + ".gen.go")
 							w := bufio.NewWriter(newFile)
 							err = t.Execute(w, tmplModel)
@@ -128,7 +132,7 @@ func (kind {{ .TypeName }}) String() string {
 	}
 }
 
-func Parse(name string) ({{ .TypeName }}, error) {
+func Parse{{ .TypeName }}(name string) ({{ .TypeName }}, error) {
 	switch name { {{ range $index, $element := .Enums }}
 	case "{{$element.Word}}":
 		return {{ $element.TypeName }}({{ $index }}), nil {{ end }}
